@@ -53,6 +53,6 @@ You will need the script to execute to completion before you can see the `p4` lo
 
 To install dependencies by hand, please reference the [vm](../vm) installation scripts.
 They contain the dependencies, versions, and installation procedure.
-You should be able to run them directly on an Ubuntu 16.04 machine, although note that the scripts currently assume the existence of a directory `/home/vagrant`:
+You should be able to run them directly on an Ubuntu 16.04 machine:
 - `sudo ./root-bootstrap.sh`
 - `sudo ./user-bootstrap.sh`
