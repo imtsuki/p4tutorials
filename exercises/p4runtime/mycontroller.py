@@ -160,11 +160,11 @@ def main(p4info_file_path, bmv2_file_path):
 
         # Write the rules that tunnel traffic from h1 to h2
         writeTunnelRules(p4info_helper, ingress_sw=s1, egress_sw=s2, tunnel_id=100,
-                         dst_eth_addr="00:00:00:00:02:02", dst_ip_addr="10.0.2.2")
+                         dst_eth_addr="08:00:00:00:02:22", dst_ip_addr="10.0.2.2")
 
         # Write the rules that tunnel traffic from h2 to h1
         writeTunnelRules(p4info_helper, ingress_sw=s2, egress_sw=s1, tunnel_id=200,
-                         dst_eth_addr="00:00:00:00:01:01", dst_ip_addr="10.0.1.1")
+                         dst_eth_addr="08:00:00:00:01:11", dst_ip_addr="10.0.1.1")
 
         # TODO Uncomment the following two lines to read table entries from s1 and s2
         # readTableRules(p4info_helper, s1)

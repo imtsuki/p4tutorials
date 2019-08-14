@@ -73,10 +73,10 @@ chmod 440 /etc/sudoers.d/99_p4
 usermod -aG vboxsf p4
 
 cd /usr/share/lubuntu/wallpapers/
-cp ~/p4-logo.png .
+cp /home/vagrant/p4-logo.png .
 rm lubuntu-default-wallpaper.png
 ln -s p4-logo.png lubuntu-default-wallpaper.png
-rm ~/p4-logo.png
+rm /home/vagrant/p4-logo.png
 cd ~
 sed -i s@#background=@background=/usr/share/lubuntu/wallpapers/1604-lubuntu-default-wallpaper.png@ /etc/lightdm/lightdm-gtk-greeter.conf
 

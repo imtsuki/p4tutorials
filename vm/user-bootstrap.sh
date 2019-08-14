@@ -4,9 +4,9 @@
 set -xe
 
 #Src 
-BMV2_COMMIT="884e01b531c6fd078cc2438a40258ecae011a65b"  # Apr 24, 2019
-PI_COMMIT="19de33e83bae7b737a3f8a1c9507c6e84173d96f"    # Apr 24, 2019
-P4C_COMMIT="61409c890c58d14ec7d6790f263eb44f393e542a"   # Apr 24, 2019
+BMV2_COMMIT="b447ac4c0cfd83e5e72a3cc6120251c1e91128ab"  # August 10, 2019
+PI_COMMIT="41358da0ff32c94fa13179b9cee0ab597c9ccbcc"    # August 10, 2019
+P4C_COMMIT="69e132d0d663e3408d740aaf8ed534ecefc88810"   # August 10, 2019
 PROTOBUF_COMMIT="v3.2.0"
 GRPC_COMMIT="v1.3.2"
 
@@ -112,6 +112,8 @@ sudo pip install crcmod
 git clone https://github.com/p4lang/tutorials
 sudo mv tutorials /home/p4
 sudo chown -R p4:p4 /home/p4/tutorials
+# Install grip for offline markdown rendering
+sudo pip install grip
 
 # --- Emacs --- #
 sudo cp p4_16-mode.el /usr/share/emacs/site-lisp/

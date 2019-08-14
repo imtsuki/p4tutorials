@@ -17,6 +17,17 @@ MAC address and output port for the next hop. We have already defined
 the control plane rules, so you only need to implement the data plane
 logic of your P4 program.
 
+We will use the following topology for this exercise. It is a single
+pod of a fat-tree topology and henceforth referred to as pod-topo:
+![pod-topo](./pod-topo/pod-topo.png)
+
+Our P4 program will be written for the V1Model architecture implemented
+on P4.org's bmv2 software switch. The architecture file for the V1Model
+can be found at: /usr/local/share/p4c/p4include/v1model.p4. This file
+desribes the interfaces of the P4 programmable elements in the architecture,
+the supported externs, as well as the architecture's standard metadata
+fields. We encourage you to take a look at it.
+
 > **Spoiler alert:** There is a reference solution in the `solution`
 > sub-directory. Feel free to compare your implementation to the
 > reference.
@@ -36,27 +47,18 @@ up a switch in Mininet to test its behavior.
    ```
    This will:
    * compile `basic.p4`, and
-   * start a Mininet instance with three switches (`s1`, `s2`, `s3`)
-     configured in a triangle, each connected to one host (`h1`, `h2`,
-     and `h3`).
-   * The hosts are assigned IPs of `10.0.1.1`, `10.0.2.2`, and `10.0.3.3`.
+   * start the pod-topo in Mininet and configure all switches with
+   the appropriate P4 program + table entries, and
+   * configure all hosts with the commands listed in
+   [pod-topo/topology.json](./pod-topo/topology.json)
 
-2. You should now see a Mininet command prompt. Open two terminals
-for `h1` and `h2`, respectively:
+2. You should now see a Mininet command prompt. Try to ping between
+   hosts in the topology:
    ```bash
-   mininet> xterm h1 h2
+   mininet> h1 ping h2
+   mininet> pingall
    ```
-3. Each host includes a small Python-based messaging client and
-server. In `h2`'s xterm, start the server:
-   ```bash
-   ./receive.py
-   ```
-4. In `h1`'s xterm, send a message to `h2`:
-   ```bash
-   ./send.py 10.0.2.2 "P4 is cool"
-   ```
-   The message will not be received.
-5. Type `exit` to leave each xterm and the Mininet command line.
+3. Type `exit` to leave each xterm and the Mininet command line.
    Then, to stop mininet:
    ```bash
    make stop
@@ -66,7 +68,7 @@ server. In `h2`'s xterm, start the server:
    make clean
    ```
 
-The message was not received because each switch is programmed
+The ping failed because each switch is programmed
 according to `basic.p4`, which drops all packets on arrival.
 Your job is to extend this file so it forwards packets.
 
@@ -77,7 +79,7 @@ within each table are inserted by the control plane. When a rule
 matches a packet, its action is invoked with parameters supplied by
 the control plane as part of the rule.
 
-In this exercise, we have already implemented the the control plane
+In this exercise, we have already implemented the control plane
 logic for you. As part of bringing up the Mininet instance, the
 `make run` command will install packet-processing rules in the tables of
 each switch. These are defined in the `sX-runtime.json` files, where
@@ -86,7 +88,7 @@ each switch. These are defined in the `sX-runtime.json` files, where
 **Important:** We use P4Runtime to install the control plane rules. The
 content of files `sX-runtime.json` refer to specific names of tables, keys, and
 actions, as defined in the P4Info file produced by the compiler (look for the
-file `build/basic.p4info` after executing `make run`). Any changes in the P4
+file `build/basic.p4.p4info.txt` after executing `make run`). Any changes in the P4
 program that add or rename tables, keys, or actions will need to be reflected in
 these `sX-runtime.json` files.
 
@@ -120,20 +122,22 @@ A complete `basic.p4` will contain the following components:
 
 ## Step 3: Run your solution
 
-Follow the instructions from Step 1. This time, your message from
-`h1` should be delivered to `h2`.
+Follow the instructions from Step 1. This time, you should be able to
+sucessfully ping between any two hosts in the topology. 
 
 ### Food for thought
 
-The "test suite" for your solution---sending a message from `h1` to
-`h2`---is not very robust. What else should you test to be confident
-of your implementation?
+The "test suite" for your solution---sending pings between hosts in the
+topology---is not very robust. What else should you test to be confident
+that you implementation is correct?
 
 > Although the Python `scapy` library is outside the scope of this tutorial,
 > it can be used to generate packets for testing. The `send.py` file shows how
 > to use it.
 
 Other questions to consider:
+ - How would you enhance your program to respond to ARP requests?
+ - How would you enhance your program to support traceroute?
  - How would you enhance your program to support next hops?
  - Is this program enough to replace a router?  What's missing?
 
@@ -152,7 +156,7 @@ messages to fix your `basic.p4` implementation.
 
 3. `basic.p4` might compile, and the control plane rules might be
 installed, but the switch might not process packets in the desired
-way. The `/tmp/p4s.<switch-name>.log` files contain detailed logs
+way. The `logs/sX.log` files contain detailed logs
 that describing how each switch processes each packet. The output is
 detailed and can help pinpoint logic errors in your implementation.
 
@@ -165,10 +169,4 @@ these instances:
 ```bash
 make stop
 ```
-
-## Next Steps
-
-Congratulations, your implementation works! In the next exercise we
-will build on top of this and add support for a basic tunneling
-protocol: [basic_tunnel](../basic_tunnel)!
 
