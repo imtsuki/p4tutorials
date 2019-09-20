@@ -65,7 +65,7 @@ def main():
 
     p = make_seq(num_parser, make_seq(op_parser,num_parser))
     s = ''
-    iface = 'h1-eth0'
+    iface = 'eth0'
 
     while True:
         s = str(raw_input('> '))
