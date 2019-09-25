@@ -18,7 +18,7 @@ you get started with P4 programming, organized into several modules:
 
 4. Advanced Behavior
 * [Source Routing](./exercises/source_routing)
-* [Calculator](./exercises/other/calc)
+* [Calculator](./exercises/calc)
 * [Load Balancing](./exercises/load_balance)
 
 5. Stateful Packet Processing
