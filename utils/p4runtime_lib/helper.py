@@ -188,3 +188,13 @@ class P4InfoHelper(object):
                     for field_name, value in action_params.iteritems()
                 ])
         return table_entry
+
+    def buildMulticastGroupEntry(self, multicast_group_id, replicas):
+        mc_entry = p4runtime_pb2.PacketReplicationEngineEntry()
+        mc_entry.multicast_group_entry.multicast_group_id = multicast_group_id
+        for replica in replicas:
+            r = p4runtime_pb2.Replica()
+            r.egress_port = replica['egress_port']
+            r.instance = replica['instance']
+            mc_entry.multicast_group_entry.replicas.extend([r])
+        return mc_entry
