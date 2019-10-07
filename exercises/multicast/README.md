@@ -17,14 +17,16 @@ static rules. Each rule will map an Ethernet MAC address to the output port. We
 have already defined the control plane rules, so you only need to implement the
 data plane logic of your P4 program.
 
-We will use the linear topology for this exercise. It is a single switch that
+We will use the star topology for this exercise. It is a single switch that
 connects four hosts as follow:
 
-                    h1         h2
-                    |          |
-              ---------------------------- s1
-                          |        |
-                         h3        h4
+                h1       h2
+                 \      /
+                  \    /
+                    s1  
+                  /    \
+                 /      \
+               h3        h4
 
 Our P4 program will be written for the V1Model architecture implemented on
 P4.org's bmv2 software switch. The architecture file for the V1Model can be
