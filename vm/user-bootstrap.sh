@@ -102,7 +102,12 @@ git submodule update --init --recursive
 mkdir -p build
 cd build
 cmake ..
-make -j${NUM_CORES}
+# The command 'make -j${NUM_CORES}' works fine for the others, but
+# with 2 GB of RAM for the VM, there are parts of the p4c build where
+# running 2 simultaneous C++ compiler runs requires more than that
+# much memory.  Things work better by running at most one C++ compilation
+# process at a time.
+make -j1
 sudo make install
 sudo ldconfig
 cd ../..
