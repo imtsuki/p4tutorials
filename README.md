@@ -46,11 +46,10 @@ virtual machine or install several dependencies.
 To build the virtual machine:
 - Install [Vagrant](https://vagrantup.com) and [VirtualBox](https://virtualbox.org)
 - Clone the repository
+- Before proceeding, ensure that your system has at least 25 Gbytes of free disk space, otherwise the installation can fail in unpredictable ways.
 - `cd vm`
-- `vagrant up`
-- Log in with username `p4` and password `p4` and issue the command `sudo shutdown -r now`
-- When the machine reboots, you should have a graphical desktop machine with the required
-software pre-installed.
+- `vagrant up` - This step typically takes over 1 hour to complete, and requires a reliable Internet connection throughout.
+- When the machine reboots, you should have a graphical desktop machine with the required software pre-installed.  There are two user accounts on the VM, `vagrant` (password `vagrant`) and `p4` (password `p4`).  The account `p4` should be logged in when the VM boots up by default, and is the one you are expected to use.
 
 *Note*: Before running the `vagrant up` command, make sure you have enabled virtualization in your environment; otherwise you may get a "VT-x is disabled in the BIOS for both all CPU modes" error. Check [this](https://stackoverflow.com/questions/33304393/vt-x-is-disabled-in-the-bios-for-both-all-cpu-modes-verr-vmx-msr-all-vmx-disabl) for enabling it in virtualbox and/or BIOS for different system configurations.
 
