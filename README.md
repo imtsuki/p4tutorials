@@ -1,5 +1,10 @@
 # P4 Tutorial
 
+If you are reading this while not attending a live P4 tutorial class,
+see [below](#older-tutorials) for links to information about recently
+given live classes.
+
+
 ## Introduction
 
 Welcome to the P4 Tutorial! We've prepared a set of exercises to help
@@ -60,3 +65,43 @@ They contain the dependencies, versions, and installation procedure.
 You should be able to run them directly on an Ubuntu 16.04 machine:
 - `sudo ./root-bootstrap.sh`
 - `sudo ./user-bootstrap.sh`
+
+
+# Older tutorials
+
+Multiple live tutorial classes have been given using the example code
+in this repository for hands-on exercises.  For example, there is one
+each April or May at the P4 workshop at Stanford University in
+California, and there have been several at networking conferences such
+as ACM SIGCOMM.
+
+Please [create an issue](https://github.com/p4lang/tutorials/issues)
+for this tutorials repository if you know a public link for classroom
+video recordings and/or pre-built VM images that currently do not have
+such a link.
+
+
+## ACM SIGCOMM August 2019 Tutorial on Programming the Network Data Plane
+
+https://p4.org/events/2019-08-23-p4-tutorial/
+
+The page linked above has a link to download a pre-built VM image used
+for this class, as well as instructions to build one yourself from a
+particular branch of this repository.
+
+
+## P4 Developer Day, April 2019
+
+https://p4.org/events/2019-04-30-p4-developer-day/
+
+Both a beginner and advanced class were taught at this event.  The
+page linked above contains instructions to download and install a
+pre-built Linux VM that was used during the classes.
+
+
+## P4 Developer Day, November 2017
+
+* [YouTube
+  videos](https://www.youtube.com/watch?v=3DJeqS_dl_o&list=PLf7HGRMAlJBzGC58GcYpimyIs7D0nuSoo)
+  - This link plays the first welcome video of a series of 6 videos of
+  tutorials given at this event.
