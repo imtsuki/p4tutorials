@@ -113,7 +113,7 @@ class ExerciseTopo(Topo):
         assert(len(node.split('-')) == 2)
         sw_name, sw_port = node.split('-')
         try:
-            sw_port = int(sw_port[1])
+            sw_port = int(sw_port[1:])
         except:
             raise Exception('Invalid switch node in topology file: {}'.format(node))
         return sw_name, sw_port
