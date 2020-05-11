@@ -117,8 +117,6 @@ sudo pip install crcmod
 git clone https://github.com/p4lang/tutorials
 sudo mv tutorials /home/p4
 sudo chown -R p4:p4 /home/p4/tutorials
-# Install grip for offline markdown rendering
-sudo pip install grip
 
 # --- Emacs --- #
 sudo cp p4_16-mode.el /usr/share/emacs/site-lisp/
